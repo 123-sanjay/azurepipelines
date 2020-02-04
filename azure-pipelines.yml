@@ -1,31 +1,68 @@
-# PHP
-# Test and package your PHP project.
-# Add steps that run tests, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+sudo: required
+dist: trusty
+group: edge
+addons:
+  apt:
+    packages:
+    - mysql-server-5.6
+    - mysql-client-core-5.6
+    - mysql-client-5.6
+    - postfix
+  firefox: "46.0"
+  hosts:
+      - magento2.travis
+services:
+  - rabbitmq
+  - elasticsearch
+language: php
+php:
+  - 7.1
+  - 7.2
+env:
+  global:
+    - COMPOSER_BIN_DIR=~/bin
+    - INTEGRATION_SETS=3
+    - NODE_JS_VERSION=8
+    - MAGENTO_HOST_NAME="magento2.travis"
+  matrix:
+    - TEST_SUITE=unit
+    - TEST_SUITE=static
+    - TEST_SUITE=js GRUNT_COMMAND=spec
+    - TEST_SUITE=js GRUNT_COMMAND=static
+    - TEST_SUITE=integration INTEGRATION_INDEX=1
+    - TEST_SUITE=integration INTEGRATION_INDEX=2
+    - TEST_SUITE=integration INTEGRATION_INDEX=3
+    - TEST_SUITE=functional
+    - TEST_SUITE=graphql-api-functional
+matrix:
+  exclude:
+    - php: 7.1
+      env: TEST_SUITE=static
+    - php: 7.1
+      env: TEST_SUITE=js GRUNT_COMMAND=spec
+    - php: 7.1
+      env: TEST_SUITE=js GRUNT_COMMAND=static
+    - php: 7.1
+      env: TEST_SUITE=functional
+    - php: 7.1
+      env: TEST_SUITE=graphql-api-functional
+cache:
+  apt: true
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.nvm
+    - $HOME/node_modules
+    - $HOME/yarn.lock
+before_install:
+  - ./dev/travis/before_install.sh
+install: composer install --no-interaction
+before_script: ./dev/travis/before_script.sh
+script:
+  # Set arguments for variants of phpunit based tests; '|| true' prevents failing script when leading test fails
+  - test $TEST_SUITE = "functional" && TEST_FILTER='dev/tests/functional/testsuites/Magento/Mtf/TestSuite/InjectableTests.php' || true
 
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
-
-variables:
-  phpVersion: 7.2
-
-steps:
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
-    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
-- script: sudo apt-get install -y php7.2  php7.2-curl php7.2-gmp php7.2-mbstring php7.2-phpdbg php7.2-sqlite3 php7.2-zip php7.2-bcmath php7.2-dba php7.2-imap php7.2-pspell php7.2-sybase php7.2-bz2 php7.2-dev php7.2-interbase php7.2-mysql php7.2-readline php7.2-tidy php7.2-cgi php7.2-enchant php7.2-intl php7.2-odbc php7.2-recode php7.2-xml php7.2-cli php7.2-fpm php7.2-json php7.2-opcache php7.2-snmp php7.2-xmlrpc php7.2-common php7.2-gd php7.2-ldap php7.2-pgsql php7.2-soap php7.2-xsl php7.2-mongo
-- script: composer install && composer update
-  displayName: 'composer install & update'
-- script: php bin/magento setup:di:compile
-  displayName: 'to check compilation error'
-- script: php bin/magento setup:static-content:deploy -f
-  displayName: 'for content deploy'
-
+  # The scripts for grunt/phpunit type tests
+  - if [ $TEST_SUITE == "functional" ]; then dev/tests/functional/vendor/phpunit/phpunit/phpunit -c dev/tests/$TEST_SUITE $TEST_FILTER; fi
+  - if [ $TEST_SUITE != "functional" ] && [ $TEST_SUITE != "js" ] && [ $TEST_SUITE != "graphql-api-functional" ]; then phpunit -c dev/tests/$TEST_SUITE $TEST_FILTER; fi
+  - if [ $TEST_SUITE == "js" ]; then grunt $GRUNT_COMMAND; fi
+  - if [ $TEST_SUITE == "graphql-api-functional" ]; then phpunit -c dev/tests/api-functional; fi
