@@ -32,9 +32,9 @@ steps:
     path: $(COMPOSER_CACHE_DIR)
   displayName: Cache composer
 - script: composer install
-    displayName: 'composer install & update'
+  displayName: 'composer install & update'
 - script: php bin/magento setup:di:compile
-    displayName: 'to check compilation error'
+  displayName: 'to check compilation error'
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
