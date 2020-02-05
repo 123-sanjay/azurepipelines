@@ -35,6 +35,3 @@ steps:
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
     verbose: true
-- task: PublishBuildArtifacts@1
-- script: php bin/magento setup:static-content:deploy -f
-  displayName: 'for content deploy'
