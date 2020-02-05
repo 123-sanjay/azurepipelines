@@ -28,7 +28,7 @@ steps:
     key: 'composer | "$(Agent.OS)" | composer.lock'
     restoreKeys: |
       composer | "$(Agent.OS)"
-      composer.lock
+      composer
     path: $(COMPOSER_CACHE_DIR)
   displayName: Cache composer
 - script: composer install
