@@ -39,4 +39,4 @@ steps:
     CopyRoot: '$(Build.BinariesDirectory)'
     Contents: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: '$(Build.BuildId).zip'
-    ArtifactType: 'FilePath'
+    ArtifactType: 'Container'
