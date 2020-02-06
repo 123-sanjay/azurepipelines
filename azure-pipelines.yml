@@ -31,7 +31,7 @@ steps:
       composer
     path: $(COMPOSER_CACHE_DIR)
   displayName: Cache composer
-- script: composer install && composer update
+- script: composer install
   displayName: 'composer install & update'
 - script: php bin/magento setup:di:compile
   displayName: 'to check compilation error'
