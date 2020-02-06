@@ -44,6 +44,7 @@ steps:
     includeRootFolder: false
     archiveType: tar
     tarCompression: 'gz'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar.gz'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
