@@ -1,5 +1,5 @@
 <?php
-die("sanjay demo")
+die("sanjay demo for azure pipelines")
 /**
  * Application entry point
  *
