@@ -43,6 +43,8 @@ steps:
     rootFolder: $(System.DefaultWorkingDirectory)
     includeRootFolder: false
     archiveType: tar
+    tarCompression: 'gz'
+    replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
