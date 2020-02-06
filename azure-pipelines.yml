@@ -35,8 +35,9 @@ steps:
   displayName: change checksum pr google-add-module  
 - script: composer install & composer update 
   displayName: 'composer install & update'
-#- script: php bin/magento setup:di:compile
-#  displayName: 'to check compilation error'
+- script: git pull origin master
+- script: php bin/magento setup:di:compile
+  displayName: 'to check compilation error'
 - task: ArchiveFiles@1
   displayName: Archive files
   inputs:
