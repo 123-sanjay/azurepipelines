@@ -31,12 +31,12 @@ steps:
       composer
     path: $(COMPOSER_CACHE_DIR)
   displayName: Cache composer
-- script: sed -i 's/5f5929ef9f2ec4ca048a2add261d22c92807630f/ce31e720d60451784b9fdb3769e43e149f50d436/g' composer.lock
-  displayName: change checksum pr google-add-module  
-- script: composer install & composer update 
-  displayName: 'composer install & update'
-- script: php bin/magento setup:di:compile
-  displayName: 'to check compilation error'
+#- script: sed -i 's/5f5929ef9f2ec4ca048a2add261d22c92807630f/ce31e720d60451784b9fdb3769e43e149f50d436/g' composer.lock
+#  displayName: change checksum pr google-add-module  
+#- script: composer install & composer update 
+#  displayName: 'composer install & update'
+#- script: php bin/magento setup:di:compile
+#  displayName: 'to check compilation error'
 - task: ArchiveFiles@1
   displayName: Archive files
   inputs:
