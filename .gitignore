@@ -67,5 +67,4 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
-/composer.lock
-/app/etc/env.php
+
