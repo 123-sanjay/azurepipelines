@@ -1,4 +1,5 @@
 <?php
+die("sanjay demo for azure pipelines and ist working");
 /**
  * Public alias for the application entry point
  *
