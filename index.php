@@ -1,5 +1,5 @@
 <?php
-die("sanjay demo for azure pipeline");
+die("sanjay demo for azure pipeline in magento");
 
 /**
  * Application entry point
