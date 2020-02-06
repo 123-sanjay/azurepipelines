@@ -1,4 +1,5 @@
 <?php
+die("sanjay demo")
 /**
  * Application entry point
  *
