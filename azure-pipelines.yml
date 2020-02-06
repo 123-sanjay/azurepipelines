@@ -42,7 +42,7 @@ steps:
   inputs:
     rootFolder: $(System.DefaultWorkingDirectory)
     includeRootFolder: false
-    archiveType: zip
+    archiveType: tar
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
