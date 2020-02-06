@@ -1,5 +1,4 @@
 <?php
-die("hello");
 /**
  * Application entry point
  *
