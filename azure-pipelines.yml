@@ -1,8 +1,3 @@
-# PHP
-# Test and package your PHP project.
-# Add steps that run tests, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
-
 trigger:
 - master
 
@@ -43,9 +38,8 @@ steps:
   inputs:
     rootFolder: $(System.DefaultWorkingDirectory)
     includeRootFolder: false
-    archiveType: tar
-    tarCompression: 'gz'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar.gz'
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
