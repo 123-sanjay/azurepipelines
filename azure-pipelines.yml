@@ -51,3 +51,4 @@ steps:
   displayName: Publish Artifact
   inputs:
     PathtoPublish: $(build.artifactstagingdirectory)
+    artifactName: 'testing' 
