@@ -1,5 +1,4 @@
 <?php
-echo("sanjay demo for azure pipeline");
 
 /**
  * Application entry point
