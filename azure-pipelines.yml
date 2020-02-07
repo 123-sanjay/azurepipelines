@@ -33,6 +33,7 @@ steps:
 - script: git pull origin master
 - script: php bin/magento setup:di:compile
   displayName: 'to check compilation error'
+- script: git pull origin master
 - task: ArchiveFiles@1
   displayName: Archive files
   inputs:
