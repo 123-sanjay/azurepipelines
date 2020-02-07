@@ -30,8 +30,8 @@ steps:
 #  displayName: change checksum pr google-add-module  
 #- script: composer install --no-interaction --prefer-dist 
 #  displayName: 'composer install'
-- script: php bin/magento setup:di:compile
-  displayName: 'to check compilation error'
+#- script: php bin/magento setup:di:compile
+#  displayName: 'to check compilation error'
 - task: ArchiveFiles@1
   displayName: Archive files
   inputs:
