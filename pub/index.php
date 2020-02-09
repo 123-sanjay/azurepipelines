@@ -1,5 +1,5 @@
 <?php
-die("its demo");
+echo ("for check pipeline working or not")
 /**
  * Public alias for the application entry point
  *
