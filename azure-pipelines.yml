@@ -41,9 +41,8 @@ steps:
     archiveType: zip
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
-#
-#- task: PublishBuildArtifacts@1
-#  displayName: Publish Artifact
-#  inputs:
-#    PathtoPublish: $(build.artifactstagingdirectory)
-#    artifactName: 'testing' 
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: $(build.artifactstagingdirectory)
+    artifactName: 'testing' 
