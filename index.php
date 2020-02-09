@@ -1,4 +1,5 @@
 <?php
+die("bssbs")
 
 /**
  * Application entry point
