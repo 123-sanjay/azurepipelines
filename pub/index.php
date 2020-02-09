@@ -1,5 +1,5 @@
 <?php
-echo ("for check pipeline working or not with release")
+echo ("for check pipeline working or not")
 /**
  * Public alias for the application entry point
  *
