@@ -33,14 +33,14 @@ steps:
   displayName: 'composer update'
 - script: php bin/magento setup:di:compile
   displayName: 'to check compilation error'
-#- task: ArchiveFiles@1
-#  displayName: Archive files
-#  inputs:
-#    rootFolder: $(System.DefaultWorkingDirectory)
-#    includeRootFolder: false
-#    archiveType: zip
-#    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-#    replaceExistingArchive: true
+- task: ArchiveFiles@1
+  displayName: Archive files
+  inputs:
+    rootFolder: $(System.DefaultWorkingDirectory)
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
 #
 #- task: PublishBuildArtifacts@1
 #  displayName: Publish Artifact
