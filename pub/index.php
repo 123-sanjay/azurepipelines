@@ -1,5 +1,5 @@
 <?php
-die("hello");
+echo("hello");
 /**
  * Public alias for the application entry point
  *
