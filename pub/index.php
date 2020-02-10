@@ -1,4 +1,5 @@
 <?php
+die("hello");
 /**
  * Public alias for the application entry point
  *
