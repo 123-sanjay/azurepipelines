@@ -1,5 +1,4 @@
 <?php
-echo("hii sanjay");
 /**
  * Public alias for the application entry point
  *
