@@ -38,10 +38,10 @@ steps:
   inputs:
     rootFolder: $(System.DefaultWorkingDirectory)
     includeRootFolder: false
-    archiveType: zip
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveType: tar
+    tarCompression: 'gz'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar.gz'
     replaceExistingArchive: true
-
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact
   inputs:
