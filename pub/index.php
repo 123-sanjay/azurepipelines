@@ -1,5 +1,5 @@
 <?php
-die("its demo");
+die("demo");
 /**
  * Public alias for the application entry point
  *
